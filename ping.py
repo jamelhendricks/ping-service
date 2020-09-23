@@ -10,8 +10,7 @@ auth = HTTPDigestAuth()
 users = {
     "vcu": "rams",
 }
-pong_url = 'http://127.0.0.1:3000/'
-
+pong_url = 'https://pong-service-455.herokuapp.com/pong'
 
 @auth.get_password
 def get_pw(username):
@@ -38,7 +37,7 @@ def PingService():
     password = auth.get_password_callback(username)
 
     pong_response = requests.get(
-        pong_url + 'pong', auth=requests.auth.HTTPDigestAuth(username, password))
+        pong_url, auth=requests.auth.HTTPDigestAuth(username, password))
     end = datetime.datetime.now()
     elapsed = end - start
     elapsed = elapsed.microseconds / 1000
